@@ -3,6 +3,7 @@ package com.BuiDucThuanPhat.bdtp_cau1;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +15,9 @@ public class MainActivity extends AppCompatActivity {
 
     EditText editTK,editMK;
     CheckBox check;
-    Button btnDN;
+    Button btnDN,btnThoat;
+
+    AlertDialog.Builder alertThoat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
         editMK = findViewById(R.id.editMK);
         check = findViewById(R.id.checkBox);
         btnDN = findViewById(R.id.btnDN);
+        btnThoat = findViewById(R.id.btnThoat);
+
+        alertThoat = new AlertDialog.Builder(this);
 
         btnDN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +47,28 @@ public class MainActivity extends AppCompatActivity {
                             "Chào mừng bạn đăng nhập hệ thống, thông tin của bạn không được lưu",
                             Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+
+        alertThoat.setTitle("Thông báo");
+        alertThoat.setMessage("Bạn muốn thoát không?");
+        alertThoat.setNegativeButton("Có", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        });
+        alertThoat.setPositiveButton("Không", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+
+        btnThoat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertThoat.show();
             }
         });
     }
